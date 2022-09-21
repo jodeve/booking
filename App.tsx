@@ -1,20 +1,34 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import Screens from "./src/Screens";
+import useFonts from './src/hooks/useFonts';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-export default function App() {
+const App = () => {
+
+  const [isReady, setIsReady] = React.useState(false);
+
+  const loadFonts = async () => {
+    await useFonts();
+    setIsReady(true);
+  };
+
+
+  React.useEffect(() => {
+    loadFonts()
+  }, []);
+
+
+  if (!isReady) return null;
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView
+      style={{
+        flex: 1,
+      }}
+    >
+      <Screens />
+    </SafeAreaView>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
