@@ -2,6 +2,7 @@ import React from 'react';
 import Screens from "./src/Screens";
 import useFonts from './src/hooks/useFonts';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { StatusBar } from 'react-native';
 
 const App = () => {
 
@@ -26,6 +27,10 @@ const App = () => {
         flex: 1,
       }}
     >
+      <StatusBar 
+        backgroundColor="#000"
+        color="#fff"
+      />
       <Screens />
     </SafeAreaView>
   );
